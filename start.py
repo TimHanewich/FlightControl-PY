@@ -27,7 +27,7 @@ def status_light_controller():
             time.sleep(0.05)
             GPIO.output(settings.pin_statuslight, GPIO.LOW)
             time.sleep(0.05)
-            time.sleep(2.5)
+            time.sleep(2)
 print("Starting status light controller...")
 tslc = threading.Thread(target=status_light_controller)
 tslc.start()
