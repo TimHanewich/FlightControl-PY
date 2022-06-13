@@ -39,3 +39,21 @@ class rythm_machine:
 
 
 
+
+
+#### UTILITY BELOW #####
+
+def sort_notes(notes):
+    topullfrom = []
+    for item in notes:
+        topullfrom.append(item)
+    toreturn = []
+    while len(topullfrom) > 0:
+        winner = topullfrom[0]
+        for n in topullfrom:
+            if n.start < winner.start:
+                winner = n
+        topullfrom.remove(winner)
+        toreturn.append(winner)
+    return toreturn
+
