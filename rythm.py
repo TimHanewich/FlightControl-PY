@@ -61,7 +61,7 @@ class rythm_machine:
         if idnotes[0].start != 0:
             eb = lopi()
             eb.status = False
-            eb.duration = self.beats_to_seconds(idnotes[0].start)
+            eb.duration = self.beats_to_seconds(idnotes[0].start) + self.offset
             toreturn.append(eb)
         
         last_note = None
@@ -71,7 +71,7 @@ class rythm_machine:
             if last_note != None:
                 tlopi = lopi()
                 tlopi.status = False
-                tlopi.duration = self.beats_to_seconds(n.start - last_note.start)
+                tlopi.duration = self.beats_to_seconds(n.start - last_note.start) + self.offset
                 toreturn.append(tlopi)
             
             nlopi = lopi()
