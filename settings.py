@@ -1,1 +1,1 @@
-pin_statuslight = 37
+pin_statuslight = 11
