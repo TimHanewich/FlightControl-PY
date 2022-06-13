@@ -2,6 +2,7 @@ import json
 import rythm
 import RPi.GPIO as GPIO
 import settings
+import light_rythm
 
 f = open(settings.song1, "r")
 x = f.read()
@@ -17,7 +18,7 @@ for l in lopis:
 
 GPIO.setwarnings(True)
 GPIO.setmode(GPIO.BOARD)
-rd = rythm.rythm_driver(11)
+rd = light_rythm.rythm_driver(11)
 print("Ready to execute!")
 input("Press enter")
 rd.execute(lopis)
