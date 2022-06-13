@@ -24,4 +24,3 @@ rd.execute(lopis)
 
 
 print("Done")
-GPIO.cleanup()
