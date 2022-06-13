@@ -19,8 +19,8 @@ lopis1 = rm.calc_lopi(1)
 
 GPIO.setwarnings(True)
 GPIO.setmode(GPIO.BOARD)
-rd = light_rythm.rythm_driver(11)
-rd2 = light_rythm.rythm_driver(13)
+rd = light_rythm.rythm_driver(13)
+rd2 = light_rythm.rythm_driver(11)
 
 t1 = threading.Thread(target=rd.execute, args=(lopis0, ))
 t2 = threading.Thread(target=rd2.execute, args=(lopis1, ))
