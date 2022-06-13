@@ -61,7 +61,7 @@ class rythm_machine:
         if (self.offset > 0):
             op = lopi()
             op.status = False
-            op.duration = op.duration
+            op.duration = self.offset
             toreturn.append(op)
         
         # If the first note (it will be arranged) does not occur on beat 0 (the beginning), create the empty space at first
