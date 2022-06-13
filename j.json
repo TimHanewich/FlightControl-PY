@@ -26,12 +26,12 @@
         {
             "id":1,
             "start":1,
-            "duration":0.5
+            "duration":0.25
         },
         {
             "id":1,
             "start":3,
-            "duration":0.5
+            "duration":0.25
         }
     ]
 }
