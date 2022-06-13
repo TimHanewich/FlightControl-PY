@@ -56,6 +56,13 @@ class rythm_machine:
         idnotes = self.notes_for_id(id)
         idnotes = sort_notes(idnotes)
         toreturn = []
+
+        # If there is an offset (period to wait before starting), add an empty time now
+        if (self.offset > 0):
+            op = lopi()
+            op.status = False
+            op.duration = op.duration
+            toreturn.append(op)
         
         # If the first note (it will be arranged) does not occur on beat 0 (the beginning), create the empty space at first
         if idnotes[0].start != 0:
@@ -71,7 +78,7 @@ class rythm_machine:
             if last_note != None:
                 tlopi = lopi()
                 tlopi.status = False
-                tlopi.duration = self.beats_to_seconds(n.start - last_note.start) + self.offset
+                tlopi.duration = self.beats_to_seconds(n.start - last_note.start)
                 toreturn.append(tlopi)
             
             nlopi = lopi()
