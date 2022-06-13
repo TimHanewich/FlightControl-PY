@@ -1,6 +1,6 @@
 import json
 import rythm
-import RPi.GPIO
+import RPi.GPIO as GPIO
 
 f = open(r"C:\Users\tahan\Downloads\FlightControl-PY\j.json", "r")
 x = f.read()
