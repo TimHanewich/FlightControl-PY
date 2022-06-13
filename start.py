@@ -38,7 +38,7 @@ tslc.start()
 print("Proceeding to main interface...")
 while True:
     cmd = input("FC>")
-    if cmd == "kill":
+    if cmd == "kill" or cmd == "exit":
         flight_control.KILL = True
         print("Killing...")
         tslc.join()
