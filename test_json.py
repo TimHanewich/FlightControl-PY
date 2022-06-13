@@ -7,9 +7,6 @@ y = json.loads(x)
 
 rm = rythm.rythm_machine(y)
 
-notes = rm.notes_for_id(0)
-for n in notes:
-    print(n.start)
-
-notesa = rythm.sort_notes(notes)
-print(len(notesa))
+lopis = rm.calc_lopi(1)
+for l in lopis:
+    print(str(l.status) + " " + str(l.duration))
