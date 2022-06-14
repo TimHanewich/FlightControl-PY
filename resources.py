@@ -21,9 +21,9 @@ def sort_notes(notes):
     return toreturn
 
 # sort idit's by time
-def sort_idits(ditis):
+def sort_idits(idits):
     topullfrom = []
-    for item in itis:
+    for item in idits:
         topullfrom.append(item)
     toreturn = []
     while len(topullfrom) > 0:
