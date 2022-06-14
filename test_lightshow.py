@@ -3,7 +3,7 @@ import rythm
 import settings
 import threading
 import resources
-#import RPi.GPIO as GPIO
+import RPi.GPIO as GPIO
 import time
 import rythm_driver
 
@@ -17,14 +17,8 @@ idis = rm.to_idis()
 
 map = {"0":11, "1":13}
 
-for i in idis:
-    if type(i) != float:
-        print(i.id)
+GPIO.setwarnings(True)
+GPIO.setmode(GPIO.BOARD)
 
-rythm_driver.map_id_to_pin(idis, map)
-
-for i in idis:
-    if type(i) != float:
-        print(i.id)
-
+rythm_driver.play(idis, map)
 
