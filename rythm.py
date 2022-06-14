@@ -13,7 +13,7 @@ class note:
 
 # GPIOI - short for "ID instruction"
 class idi:
-    id = 0 # pin to trigger
+    id = "" # pin to trigger
     status = False #False means turn it off, True means turn it on
 
 # "ID instruction with time"
