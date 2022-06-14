@@ -10,11 +10,13 @@ y = json.loads(x)
 
 rm = rythm.rythm_machine(y)
 
-#v = rm.to_gpioits()
-#v = resources.sort_gpioits(v)
-#for vv in v:
-#    print(str(vv.pin) + " " + str(vv.status) + " " + str(vv.time))
+v = rm.to_gpioits()
+v = resources.sort_gpioits(v)
+for vv in v:
+    print(str(vv.pin) + " " + str(vv.status) + " " + str(vv.time))
 
+print("---")
+print("---")
 
 gpiois = rm.to_gpiois()
 for g in gpiois:

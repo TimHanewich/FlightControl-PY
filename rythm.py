@@ -62,6 +62,11 @@ class rythm_machine:
         my_gpioits = resources.sort_gpioits(my_gpioits) #sort by time
         toreturn = []
 
+        #add a blank one at the front if necessary
+        if my_gpioits[0].time > 0:
+            toreturn.append(my_gpioits[0].time)
+
+        # calculate based on each
         last_gpioit = None
         for g in my_gpioits:
 
