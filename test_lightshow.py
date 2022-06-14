@@ -15,7 +15,7 @@ rm = rythm.rythm_machine(y)
 
 idis = rm.to_idis()
 
-map = {"0":11, "1":13}
+map = {"kick":11, "clap":13}
 
 GPIO.setwarnings(True)
 GPIO.setmode(GPIO.BOARD)
