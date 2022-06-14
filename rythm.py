@@ -2,6 +2,7 @@ import time
 import json
 from xmlrpc.client import Boolean
 from resources import sort_notes
+import resources
 
 
 # The raw input into the system - created by a human by hand!
@@ -9,6 +10,15 @@ class note:
     id = 0 #the id of the "instrument" or "device" that this should appear on
     start = 0.0 #what beat to start on
     duration = 0.25 #duration in beats
+
+# GPIOI - short for "GPIO instruction"
+class gpioi:
+    pin = 0 # pin to trigger
+    status = False #False means turn it off, True means turn it on
+
+# "GPIO instruction with time"
+class gpioit(gpioi):
+    time = 0.0 # time (in seconds) that this should be triggered on
 
 
 class rythm_machine:
@@ -44,6 +54,48 @@ class rythm_machine:
 
     def beats_to_seconds(self, beat:float) -> float:
         toreturn = beat * self.__beatsec__
+        return toreturn
+
+    def to_gpiois(self):
+        toreturn = []
+        snotes = resources.sort_notes(self.notes)
+
+        # if there is an offset, add a wait
+        if self.offset > 0:
+            toreturn.append(self.offset)
+        
+        # if the first note is not on the first beat, add a wait
+        if snotes[0].start != 0:
+            toreturn.append(self.beats_to_seconds(snotes[0].start))
+
+        last_note = None
+        for n in snotes:
+            g = gpioi()
+            g.pin = n.id
+            g.status = True
+            toreturn.append(g)
+
+
+    def to_gpioits(self):
+        toreturn = []
+        snotes = resources.sort_notes(self.notes)
+        
+        for n in snotes:
+
+            #Do the on
+            go = gpioit()
+            go.pin = n.id
+            go.status = True
+            go.time = self.beats_to_seconds(n.start) + self.offset
+            toreturn.append(go)
+
+            #Do the off
+            gf = gpioit()
+            gf.pin = n.id
+            gf.status = False
+            gf.time = go.time + self.beats_to_seconds(n.duration)
+            toreturn.append(gf)
+
         return toreturn
 
 
