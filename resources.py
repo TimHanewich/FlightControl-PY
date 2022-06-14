@@ -21,7 +21,7 @@ def sort_notes(notes):
     return toreturn
 
 # sort GPIOIT's by time
-def sort_gpioits(gpioits):
+def sort_idits(gpioits):
     topullfrom = []
     for item in gpioits:
         topullfrom.append(item)

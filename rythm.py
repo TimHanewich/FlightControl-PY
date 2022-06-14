@@ -60,7 +60,7 @@ class rythm_machine:
     def to_idis(self):
         
         my_gpioits = self.to_idits()
-        my_gpioits = resources.sort_gpioits(my_gpioits) #sort by time
+        my_gpioits = resources.sort_idits(my_gpioits) #sort by time
         toreturn = []
 
         #add a blank one at the front if necessary
