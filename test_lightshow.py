@@ -7,7 +7,7 @@ import RPi.GPIO as GPIO
 import time
 import rythm_driver
 
-f = open(settings.song1, "r")
+f = open(settings.song_beautiful_people, "r")
 x = f.read()
 y = json.loads(x)
 
@@ -15,7 +15,7 @@ rm = rythm.rythm_machine(y)
 
 idis = rm.to_idis()
 
-map = {"kick":11, "clap":13}
+map = {"kick":11, "synth":13}
 
 GPIO.setwarnings(True)
 GPIO.setmode(GPIO.BOARD)
