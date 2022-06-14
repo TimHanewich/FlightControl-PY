@@ -20,8 +20,8 @@ GPIO.setup(13, GPIO.OUT)
 
 
 
-gpiois = rm.to_gpiois()
-for g in gpiois:
+idis = rm.to_idis()
+for g in idis:
     if type(g) == float:
         print("Wait " + str(g) + " seconds")
         time.sleep(g)

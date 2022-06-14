@@ -11,13 +11,13 @@ class note:
     start = 0.0 #what beat to start on
     duration = 0.25 #duration in beats
 
-# GPIOI - short for "GPIO instruction"
-class gpioi:
+# GPIOI - short for "ID instruction"
+class idi:
     pin = 0 # pin to trigger
     status = False #False means turn it off, True means turn it on
 
-# "GPIO instruction with time"
-class gpioit(gpioi):
+# "ID instruction with time"
+class idit(idi):
     time = 0.0 # time (in seconds) that this should be triggered on
 
 
@@ -56,7 +56,8 @@ class rythm_machine:
         toreturn = beat * self.__beatsec__
         return toreturn
 
-    def to_gpiois(self):
+    # supply the array of items that the GPIO pins should execute. i.e. wait times (as float values) and then a few idi's
+    def to_idis(self):
         
         my_gpioits = self.to_gpioits()
         my_gpioits = resources.sort_gpioits(my_gpioits) #sort by time
@@ -77,7 +78,7 @@ class rythm_machine:
                     toreturn.append(wait_time) # append a time (in seconds) to wait
 
             # create this action
-            sg = gpioi()
+            sg = idi()
             sg.pin = g.pin
             sg.status = g.status
             toreturn.append(sg)
@@ -87,24 +88,21 @@ class rythm_machine:
 
         return toreturn
 
-
-
-
-    def to_gpioits(self):
+    def to_idits(self):
         toreturn = []
         snotes = resources.sort_notes(self.notes)
         
         for n in snotes:
 
             #Do the on
-            go = gpioit()
+            go = idit()
             go.pin = n.id
             go.status = True
             go.time = self.beats_to_seconds(n.start) + self.offset
             toreturn.append(go)
 
             #Do the off
-            gf = gpioit()
+            gf = idit()
             gf.pin = n.id
             gf.status = False
             gf.time = go.time + self.beats_to_seconds(n.duration)
