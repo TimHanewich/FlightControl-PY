@@ -59,7 +59,7 @@ class rythm_machine:
     # supply the array of items that the GPIO pins should execute. i.e. wait times (as float values) and then a few idi's
     def to_idis(self):
         
-        my_gpioits = self.to_gpioits()
+        my_gpioits = self.to_idits()
         my_gpioits = resources.sort_gpioits(my_gpioits) #sort by time
         toreturn = []
 
