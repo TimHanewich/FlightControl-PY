@@ -20,10 +20,10 @@ def sort_notes(notes):
         toreturn.append(winner)
     return toreturn
 
-# sort GPIOIT's by time
-def sort_idits(gpioits):
+# sort idit's by time
+def sort_idits(ditis):
     topullfrom = []
-    for item in gpioits:
+    for item in itis:
         topullfrom.append(item)
     toreturn = []
     while len(topullfrom) > 0:
