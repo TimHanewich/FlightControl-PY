@@ -57,23 +57,32 @@ class rythm_machine:
         return toreturn
 
     def to_gpiois(self):
-        toreturn = []
-        snotes = resources.sort_notes(self.notes)
-
-        # if there is an offset, add a wait
-        if self.offset > 0:
-            toreturn.append(self.offset)
         
-        # if the first note is not on the first beat, add a wait
-        if snotes[0].start != 0:
-            toreturn.append(self.beats_to_seconds(snotes[0].start))
+        my_gpioits = self.to_gpioits()
+        my_gpioits = resources.sort_gpioits(my_gpioits) #sort by time
+        toreturn = []
 
-        last_note = None
-        for n in snotes:
-            g = gpioi()
-            g.pin = n.id
-            g.status = True
-            toreturn.append(g)
+        last_gpioit = None
+        for g in my_gpioits:
+
+            # was there a gap in time from that last GPIOIT we saw? If so, we need to inject some time
+            if last_gpioit != None:
+                if g.time != last_gpioit.time:
+                    wait_time = g.time - last_gpioit.time
+                    toreturn.append(wait_time) # append a time (in seconds) to wait
+
+            # create this action
+            sg = gpioi()
+            sg.pin = g.pin
+            sg.status = g.status
+            toreturn.append(sg)
+
+            #set the last seen
+            last_gpioit = g
+
+        return toreturn
+
+
 
 
     def to_gpioits(self):
