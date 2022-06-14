@@ -13,7 +13,7 @@ class note:
 
 # GPIOI - short for "ID instruction"
 class idi:
-    pin = 0 # pin to trigger
+    id = 0 # pin to trigger
     status = False #False means turn it off, True means turn it on
 
 # "ID instruction with time"
@@ -79,7 +79,7 @@ class rythm_machine:
 
             # create this action
             sg = idi()
-            sg.pin = g.pin
+            sg.id = g.id
             sg.status = g.status
             toreturn.append(sg)
 
@@ -96,14 +96,14 @@ class rythm_machine:
 
             #Do the on
             go = idit()
-            go.pin = n.id
+            go.id = n.id
             go.status = True
             go.time = self.beats_to_seconds(n.start) + self.offset
             toreturn.append(go)
 
             #Do the off
             gf = idit()
-            gf.pin = n.id
+            gf.id = n.id
             gf.status = False
             gf.time = go.time + self.beats_to_seconds(n.duration)
             toreturn.append(gf)
