@@ -5,7 +5,7 @@ import threading
 import resources
 import time
 
-f = open(settings.song1, "r")
+f = open(settings.song_beautiful_people, "r")
 x = f.read()
 y = json.loads(x)
 
@@ -24,7 +24,7 @@ for i in instructions:
         print("ID: " + str(i.id) + " Status: " + str(i.status))
 
 
-map = {"kick":11, "clap":13}
+map = {"kick":11, "synth":13}
 
 resources.map_id_to_pin(instructions, map)
 for i in instructions:
