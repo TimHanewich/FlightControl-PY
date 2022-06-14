@@ -43,6 +43,26 @@
             "start":7.0,
             "duration":0.5
         },
+        {
+            "id":"kick",
+            "start":8.0,
+            "duration":0.5
+        },
+        {
+            "id":"kick",
+            "start":9.0,
+            "duration":0.5
+        },
+        {
+            "id":"kick",
+            "start":10.0,
+            "duration":0.5
+        },
+        {
+            "id":"kick",
+            "start":11.0,
+            "duration":0.5
+        },
 
 
 
@@ -52,57 +72,57 @@
 
         {
             "id":"synth",
-            "start":0.0,
+            "start":4,
             "duration":0.25
         },
         {
             "id":"synth",
-            "start":0.75,
+            "start":4.75,
             "duration":0.25
         },
         {
             "id":"synth",
-            "start":1.5,
+            "start":5.5,
             "duration":0.25
         },
         {
             "id":"synth",
-            "start":2.25,
+            "start":6.25,
             "duration":0.25
         },
         {
             "id":"synth",
-            "start":3,
+            "start":7,
             "duration":0.25
         },
         {
             "id":"synth",
-            "start":3.75,
+            "start":7.75,
             "duration":0.25
         },
         {
             "id":"synth",
-            "start":4.5,
+            "start":8.5,
             "duration":0.25
         },
         {
             "id":"synth",
-            "start":5.25,
+            "start":9.25,
             "duration":0.25
         },
         {
             "id":"synth",
-            "start":6,
+            "start":10,
             "duration":0.25
         },
         {
             "id":"synth",
-            "start":6.75,
+            "start":10.75,
             "duration":0.25
         },
         {
             "id":"synth",
-            "start":7.5,
+            "start":11.5,
             "duration":0.25
         }
     ]
