@@ -1,17 +1,14 @@
 from mido import MidiFile
 import mido
+import rythm_midi
 
 mid = MidiFile(r"C:\Users\tahan\Downloads\beautiful_people.mid")
 
-#for track in mid.tracks:
-#    print(track)
+rm = rythm_midi.midi_to_rm(mid)
 
-for msg in mid.tracks[2]:
-    if msg.type == "note_on":
-        print("On: " + str(msg.time))
-    elif msg.type == "note_off":
-        print("Off: " + str(msg.time))
-
+for n in rm.notes:
+    try:
+        print(n.id + " Start: " + str(n.start) + " Duration: " + str(n.duration))
+    except:
+        print("error")
     
-
-print(str(mido.tick2second(24, mid.ticks_per_beat, 468750)))
