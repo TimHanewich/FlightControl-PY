@@ -12,6 +12,18 @@ canvas_width = 800
 canvas_height = 600
 #####################
 
+# write the command used to play (this has to be done first so it is loaded by the time we get down in the script where we use it)
+def play():
+    for i in instructions:
+        if type(i) == float:
+            time.sleep(i)
+        else:
+            if i.status == True:
+                canvas.itemconfig(pads[i.id], fill="red")
+            else:
+                canvas.itemconfig(pads[i.id], fill="blue")
+
+
 # get the midi file and convert it into a rythm machine
 midi_file = mido.MidiFile(r"C:\Users\tahan\Downloads\midi_projects\Chris Brown - Beautiful People\midi\bp1.mid")
 rm = rythm_midi.midi_to_rm(midi_file)
@@ -50,6 +62,9 @@ for r in range(0, rows_needed):
     on_pos_x = 0 # reset
     on_pos_y = on_pos_y + square_height
 
+# create a button on the bottom that can be used to start the play
+bplay = tkinter.Button(canvas, text="play", command=play, pady=10)
+
 # create a mapping that we will use to map the instrument ID's to the index square (not worrying about GPIO mappings at all)
 map = {}
 pn = 0
@@ -69,13 +84,4 @@ resources.map_id_to_pin(instructions, map)
 window.mainloop()
 
 
-# now play!
-for i in instructions:
-    if type(i) == float:
-        time.sleep(i)
-    else:
-        if i.status == True:
-            canvas.itemconfig(pads[i.id], fill="red")
-        else:
-            canvas.itemconfig(pads[i.id], fill="blue")
 
