@@ -4,6 +4,8 @@ import mido
 import rythm
 import rythm_midi
 import math
+import resources
+import time
 
 ##### SETTINGS ######
 canvas_width = 800
@@ -48,6 +50,32 @@ for r in range(0, rows_needed):
     on_pos_x = 0 # reset
     on_pos_y = on_pos_y + square_height
 
+# create a mapping that we will use to map the instrument ID's to the index square (not worrying about GPIO mappings at all)
+map = {}
+pn = 0
+for id in rm.all_ids():
+    map[id] = pn
+    pn = pn + 1
+
+# convert the notes to instructions to follow
+instructions = rm.to_idis()
+
+# re-map it to the square indexes
+resources.map_id_to_pin(instructions, map)
+
+
 
 # show it
 window.mainloop()
+
+
+# now play!
+for i in instructions:
+    if type(i) == float:
+        time.sleep(i)
+    else:
+        if i.status == True:
+            canvas.itemconfig(pads[i.id], fill="red")
+        else:
+            canvas.itemconfig(pads[i.id], fill="blue")
+
