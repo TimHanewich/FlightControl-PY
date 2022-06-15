@@ -26,16 +26,6 @@ class rythm_machine:
     bpm = 0
     offset = 0.0 #how many seconds to "offset" before the first beat - i.e. if the MP3 file of the song starts and then has 1.3 seconds of silence before the first beat, this would be 1.3
     notes = []
-    def __init__(self, json):
-        self.__beatsec__ = float(60) / json["bpm"]
-        self.bpm = json["bpm"]
-        self.offset = json["offset"]
-        for n in json["notes"]:
-            tn = note()
-            tn.id = n["id"]
-            tn.start = n["start"]
-            tn.duration = n["duration"]
-            self.notes.append(tn)
     
     def all_ids(self):
         ids = []
@@ -110,6 +100,18 @@ class rythm_machine:
 
         return toreturn
 
+def json_to_rm(json) -> rythm_machine:
+    toreturn = rythm_machine()
+    toreturn.__beatsec__ = float(60) / json["bpm"]
+    toreturn.bpm = json["bpm"]
+    toreturn.offset = json["offset"]
+    for n in json["notes"]:
+        tn = note()
+        tn.id = n["id"]
+        tn.start = n["start"]
+        tn.duration = n["duration"]
+        toreturn.notes.append(tn)
+    return toreturn
 
 
             
