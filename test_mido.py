@@ -12,6 +12,7 @@ for n in rm.notes:
 
 instructions = rm.to_idis()
 
+# Map the name of each track in the midi file to a GPIO pin number
 map = {
     "i1":1,
     "i2":2,
