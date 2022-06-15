@@ -41,5 +41,5 @@ def sort_idits(idits):
 def map_id_to_pin(idis, mapping):
     for i in idis:
         if type(i) != float:
-            nid = mapping[str(i.id)]
+            nid = mapping[i.id]
             i.id = nid
