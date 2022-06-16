@@ -7,7 +7,7 @@ while True:
     pin = input("Test on pin: ")
     if pin == "":
         quit()
-    GPIO.setup(pin, GPIO.OUT)
+    GPIO.setup(int(pin), GPIO.OUT)
     GPIO.output(pin, GPIO.HIGH)
     print("Pin " + str(pin) + " on high!")
     input("Enter to stop")
