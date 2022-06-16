@@ -29,4 +29,7 @@ GPIO.setmode(GPIO.BOARD)
 GPIO.setwarnings(True)
 
 # play!
+input("Ready to play. Press enter when ready!")
+print("playing...")
 rythm_driver.play(instructions, map)
+print("Done")
