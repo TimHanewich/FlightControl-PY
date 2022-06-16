@@ -5,6 +5,7 @@ from resources import sort_notes
 import RPi.GPIO as GPIO
 import rythm
 from resources import map_id_to_pin
+import settings
 
 
 
@@ -28,7 +29,7 @@ def play(idis, mapping):
     # play!
     for i in idis:
         if type(i) == float:
-            time.sleep(i)
+            time.sleep(i - settings.compensation_delay)
         else:
             if i.status == True:
                 GPIO.output(i.id, GPIO.HIGH)
