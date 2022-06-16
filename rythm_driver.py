@@ -29,7 +29,7 @@ def play(idis, mapping):
     # play!
     for i in idis:
         if type(i) == float:
-            time.sleep(i - settings.compensation_delay)
+            time.sleep(max(i - settings.compensation_delay, 0))
         else:
             if i.status == True:
                 GPIO.output(i.id, GPIO.HIGH)
