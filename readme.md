@@ -47,3 +47,43 @@ for i in instructions:
         print("ID: " + str(i.id) + " Status: " + str(i.status))
 
 ```
+
+## How to get the MPU-6050 Module (Gyroscope, Accelerator, Temperature Sensor) to work
+- https://www.youtube.com/watch?v=JTFa5l7zAA4
+- Backup of the above video: https://youtu.be/jREIJ80rwz0
+
+1. Enable I2C (IIC) on raspberry PI:
+    1. sudo raspi-config
+    2. Go to "Interfacing options"
+    3. Select "I2C"
+    4. Select "Yes"
+2. We need to use the "i2cdetect" commad in bash to determine the address of the MPU-6050 module. To use this command, you must have i2c tools installed: `sudo apt-get install i2c-tools`
+3. Run command `i2cdetect -y 1` to get the address of the MPU-6050 module. The number you see will be the address and **will be used in the code later**.
+4. Install the software to use this module. Run command `sudo apt install python3-smbus` 
+5. Install the Python library for interfacing with this module (easily): `python3 -m pip install mpu6050-raspberrypi`
+
+Example Code:
+```
+from mpu6050 import mpu6050
+
+mpu = mpu6050(0x68)
+
+while True:
+        temp = mpu.get_temp()
+        print("Temperature: " + str(temp))
+
+        acc = mpu.get_accel_data()
+        print("AccX: " + str(acc["x"]))
+        print("AccY: " + str(acc["y"]))
+        print("AccZ: " + str(acc["z"]))
+
+        gyro = mpu.get_gyro_data()
+        print("GyroX: " + str(gyro["x"]))
+        print("GyroY: " + str(gyro["y"]))
+        print("GyroZ: " + str(gyro["z"]))
+
+
+        ip = input("Enter to try agian, 'exit' to exit: ")
+        if ip == "exit":
+                exit()
+```
