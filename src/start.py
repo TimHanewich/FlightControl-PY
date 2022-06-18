@@ -28,6 +28,14 @@ def status_light_controller():
             GPIO.output(settings.pin_statuslight, GPIO.LOW)
             time.sleep(0.05)
             time.sleep(2)
+    
+    #cleanup the GPIO that we were using
+    GPIO.cleanup(settings.pin_statuslight)
+
+
+# LAUNCH EACH THREAD!
+
+# Launch status light controller (controls showing the appropriate status light on the status light indicator pin)
 print("Starting status light controller...")
 tslc = threading.Thread(target=status_light_controller)
 tslc.start()
