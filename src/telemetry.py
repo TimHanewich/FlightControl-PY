@@ -5,13 +5,21 @@ import time
 import RPi.GPIO as GPIO
 import math
 
-def IsMoving(acc_x:float, acc_y:float, acc_z:float):
+def IsMoving(acc_x:float, acc_y:float, acc_z:float, gyro_x:float, gyro_y:float, gyro_z:float):
+    
+    # Calculate via accelerometer
     pt = math.sqrt((acc_x * acc_x) + (acc_y * acc_y) + (acc_z * acc_z))
     g = pt / 9.81
-    if g >= 1.06:
+    if g >= 1.06: #if the g force from the accelerometer exceeds this threshold, we are moving
         return True
-    else:
-        return False
+
+    # Calculate via the gyro
+    gsqrt = math.sqrt((gyro_x * gyro_x) + (gyro_y * gyro_y) + (gyro_z * gyro_z))
+    if gsqrt > 1.5:
+        return True
+
+    #If we've gotten this far, that means we must not be moving. We've passed both
+    return False
     
 
 class MotionSensor:
@@ -41,7 +49,7 @@ class MotionSensor:
     def StartMotionLight(self):
         GPIO.setup(settings.pin_motionlight, GPIO.OUT) #set up the GPIO
         while flight_control.KILL == False:
-            if IsMoving(flight_control.AccX, flight_control.AccY, flight_control.AccZ): 
+            if IsMoving(flight_control.AccX, flight_control.AccY, flight_control.AccZ, flight_control.GyroX, flight_control.GyroY, flight_control.GyroZ): 
                 # if it is moving, light off
                 GPIO.output(settings.pin_motionlight, GPIO.LOW)
             else: # If it is NOT moving, show the light on
