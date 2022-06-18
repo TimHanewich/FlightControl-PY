@@ -67,5 +67,12 @@ while True:
     elif cmd == "status standby":
         flight_control.STATUS = resources.sys_status.standby
         print("Status set to standby")
+    elif cmd == "tele":
+        print("AccX: " + str(flight_control.AccX))
+        print("AccY: " + str(flight_control.AccY))
+        print("AccZ: " + str(flight_control.AccZ))
+        print("GyroX: " + str(flight_control.GyroX))
+        print("GyroY: " + str(flight_control.GyroY))
+        print("GyroZ: " + str(flight_control.GyroZ))
     else:
         print("Command '" + cmd + "' not understood.")
