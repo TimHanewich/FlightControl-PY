@@ -42,10 +42,15 @@ tslc = threading.Thread(target=status_light_controller)
 tslc.start()
 
 # Launc the MPU-6050 telemetry reader
+print("Launching MPU-6050 telemetry reader...")
 tr = telemetry.MotionSensor()
 tmpu = threading.Thread(target=tr.StartMotionSensor)
 tmpu.start()
 
+# Launch the motion light controller
+print("Launching motion light controller...")
+tmlc = threading.Thread(target=tr.StartMotionLight)
+tmlc.start()
 
 
 # COMMAND INTERFACE
@@ -59,6 +64,7 @@ while True:
         # Wait for each thread that we started to terminate
         tslc.join()
         tmpu.join()
+        tmlc.join()
 
         break
     elif cmd == "status offline":
