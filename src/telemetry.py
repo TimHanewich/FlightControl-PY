@@ -15,7 +15,7 @@ def IsMoving(acc_x:float, acc_y:float, acc_z:float, gyro_x:float, gyro_y:float, 
 
     # Calculate via the gyro
     gsqrt = math.sqrt((gyro_x * gyro_x) + (gyro_y * gyro_y) + (gyro_z * gyro_z))
-    if gsqrt > 1.5:
+    if gsqrt > 1.8:
         return True
 
     #If we've gotten this far, that means we must not be moving. We've passed both
