@@ -6,8 +6,9 @@ import RPi.GPIO as GPIO
 import math
 
 def IsMoving(acc_x:float, acc_y:float, acc_z:float):
-    total = abs(acc_x) + abs(acc_y) + abs(acc_z)
-    if total >= 16:
+    pt = (acc_x * acc_x) + (acc_y * acc_y) + (acc_z * acc_z)
+    g = pt / 9.81
+    if g >= 1.25:
         return True
     else:
         return False
