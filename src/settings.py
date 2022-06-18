@@ -1,5 +1,6 @@
 # Pins
 pin_statuslight = 11
+pin_motionlight = 40 #Light will be on if it is detected the device is not moving or rotating (relatively still). Off if movement is detected (via the MPU-6050 module)
 
 #Music
 song1 = r"C:\Users\tahan\Downloads\FlightControl-PY\j.json"
