@@ -8,6 +8,7 @@ import math
 def IsMoving(acc_x:float, acc_y:float, acc_z:float):
     pt = (acc_x * acc_x) + (acc_y * acc_y) + (acc_z * acc_z)
     g = pt / 9.81
+    print("pt: " + str(pt))
     print("g: " + str(g))
     if g >= 1.25:
         return True
