@@ -6,7 +6,7 @@ import time
 class MotionSensor:
 
     # This method only will continuously read the MPU-6050 module and store the telemetry data from that module in the appropriate values in the flight_control module.
-    def StartMotionSensor():
+    def StartMotionSensor(self):
 
         #create the mpu module class for transacting with it
         mpu = mpu6050(settings.mpu6050_address)
