@@ -4,6 +4,7 @@ import flight_control
 import time
 import RPi.GPIO as GPIO
 import threading
+import telemetry
 
 # Set up
 GPIO.setwarnings(False)
@@ -40,6 +41,11 @@ print("Starting status light controller...")
 tslc = threading.Thread(target=status_light_controller)
 tslc.start()
 
+# Launc the MPU-6050 telemetry reader
+tr = telemetry.MotionSensor()
+tmpu = threading.Thread(target=tr.StartMotionSensor)
+tmpu.start()
+
 
 
 # COMMAND INTERFACE
@@ -49,7 +55,11 @@ while True:
     if cmd == "kill" or cmd == "exit":
         flight_control.KILL = True
         print("Killing...")
+
+        # Wait for each thread that we started to terminate
         tslc.join()
+        tmpu.join()
+
         break
     elif cmd == "status offline":
         flight_control.STATUS = resources.sys_status.offline
