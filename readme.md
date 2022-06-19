@@ -1,3 +1,20 @@
+## Attached Devices
+Each drone will have the following attached devices:
+- Raspberry Pi Zero W
+- 4 motors
+- GPS Module
+- MPU-6050 (Accelerometer, Gyroscope, Temperature sensor)
+- Digital Compass
+- Radio receiver
+
+### I2C
+Of the above attached devices, the following require the I2C protocol:
+- MPU-6050
+- GPS Module
+- Digital Compass
+- Radio receiver
+
+
 ## In a MIDI file:
 - BPM = 60,000,000 / the tempo in the message that looks like this: MetaMessage('set_tempo', tempo=468750, time=0)
     - http://midi.teragonaudio.com/tech/midifile/ppqn.htm
@@ -87,3 +104,7 @@ while True:
         if ip == "exit":
                 exit()
 ```
+
+
+## Tutorials
+- Using the radio transmitter + receiver w/ RPI: https://www.instructables.com/RF-433-MHZ-Raspberry-Pi/
