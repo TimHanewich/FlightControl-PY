@@ -105,36 +105,33 @@ while True:
         motor_driver.set_motor_power(Motor.RearRight, 5)
         print("Idling at 5% power across all four motors")
     elif len(cmd) >= 2 and cmd[0:2] == "mp": #short for "motor power". i.e. "mp 50" powers all 4 motors to 50%
-        loc1 = cmd.index(" ")
-        sec_str = cmd[loc1+1:999]
-        try:
-            numf = float(sec_str)
+        parts = cmd.split(" ")
+        if len(parts) == 2:
+            numf = float(parts[1])
             motor_driver.set_motor_power(Motor.FrontLeft, numf)
             motor_driver.set_motor_power(Motor.FrontRight, numf)
             motor_driver.set_motor_power(Motor.RearLeft, numf)
             motor_driver.set_motor_power(Motor.RearRight, numf)
             print("All 4 motor power now set to " + str(numf) + "% power")
-        except:
-            loc1 = cmd.index(" ", loc1 + 1) #find the next space
-            third_str = cmd[loc1+1:999]
+        elif len(parts) == 3:
             try:
-                num = float(third_str)
-                if sec_str == "fl":
+                num = float(parts[2])
+                if parts[1] == "fl":
                     motor_driver.set_motor_power(Motor.FrontLeft, num)
                     print("Front Left motor set to " + str(num) + "% power")
-                elif sec_str == "fr":
+                elif parts[1] == "fr":
                     motor_driver.set_motor_power(Motor.FrontRight, num)
                     print("Front Right motor set to " + str(num) + "% power")
-                elif sec_str == "rl":
+                elif parts[1] == "rl":
                     motor_driver.set_motor_power(Motor.RearLeft, num)
                     print("Rear Left motor set to " + str(num) + "% power")
-                elif sec_str == "rr":
+                elif parts[1] == "rr":
                     motor_driver.set_motor_power(Motor.RearRight, num)
                     print("Rear Right motor set to " + str(num) + "% power")
                 else:
-                    print("Motor '" + sec_str + "' invalid. Please use 'fl', 'fr', 'rl', or 'rr'")
+                    print("Motor '" + parts[1] + "' invalid. Please use 'fl', 'fr', 'rl', or 'rr'")
             except:
-                print("Unable to convert '" + third_str + "' into a floating point number")
+                print("Unable to convert '" + parts[2] + "' into a floating point number")
             
 
 
