@@ -1,4 +1,8 @@
 # Pins
+pin_mFL = 35 #front left motor (clockwise)
+pin_mFR = 36 #front right motor (counter clock wise)
+pin_mRL = 37 #rear left motor (counter clock wise)
+pin_mRR = 38 #rear right motor (clockwise)
 pin_statuslight = 11
 pin_motionlight = 40 #Light will be on if it is detected the device is not moving or rotating (relatively still). Off if movement is detected (via the MPU-6050 module)
 
