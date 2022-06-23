@@ -1,3 +1,10 @@
+### ENABLEMENT ###
+enable_quadcopter = True
+enable_mpu6050 = False
+enable_statuslight = False
+enable_motionlight = False
+###################
+
 # Pins
 pin_mFL = 35 #front left motor (clockwise)
 pin_mFR = 36 #front right motor (counter clock wise)

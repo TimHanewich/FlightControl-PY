@@ -42,23 +42,27 @@ def status_light_controller():
 
 
 # start the motor drivers
-motor_driver.start_motors()
+if settings.enable_quadcopter:
+    motor_driver.start_motors()
 
 # Launch status light controller (controls showing the appropriate status light on the status light indicator pin)
-print("Starting status light controller...")
-tslc = threading.Thread(target=status_light_controller)
-tslc.start()
+if settings.enable_statuslight:
+    print("Starting status light controller...")
+    tslc = threading.Thread(target=status_light_controller)
+    tslc.start()
 
 # Launc the MPU-6050 telemetry reader
-print("Launching MPU-6050 telemetry reader...")
-tr = telemetry.MotionSensor()
-tmpu = threading.Thread(target=tr.StartMotionSensor)
-tmpu.start()
+if settings.enable_mpu6050:
+    print("Launching MPU-6050 telemetry reader...")
+    tr = telemetry.MotionSensor()
+    tmpu = threading.Thread(target=tr.StartMotionSensor)
+    tmpu.start()
 
 # Launch the motion light controller
-print("Launching motion light controller...")
-tmlc = threading.Thread(target=tr.StartMotionLight)
-tmlc.start()
+if settings.enable_motionlight:
+    print("Launching motion light controller...")
+    tmlc = threading.Thread(target=tr.StartMotionLight)
+    tmlc.start()
 
 
 # COMMAND INTERFACE
@@ -73,9 +77,12 @@ while True:
         motor_driver.stop_motors()
 
         # Wait for each thread that we started to terminate
-        tslc.join()
-        tmpu.join()
-        tmlc.join()
+        if settings.enable_statuslight:
+            tslc.join()
+        if settings.enable_mpu6050:
+            tmpu.join()
+        if settings.enable_motionlight:
+            tmlc.join()
 
         break
     elif cmd == "status offline":
