@@ -5,6 +5,8 @@ import time
 import RPi.GPIO as GPIO
 import threading
 import telemetry
+import motor_driver
+from motor_driver import Motor
 
 # Set up
 GPIO.setwarnings(False)
@@ -34,7 +36,13 @@ def status_light_controller():
     GPIO.cleanup(settings.pin_statuslight)
 
 
-# LAUNCH EACH THREAD!
+
+
+# LAUNCH EACH THREAD/ACTIVITY!
+
+
+# start the motor drivers
+motor_driver.start_motors()
 
 # Launch status light controller (controls showing the appropriate status light on the status light indicator pin)
 print("Starting status light controller...")
@@ -61,6 +69,9 @@ while True:
         flight_control.KILL = True
         print("Killing...")
 
+        # stop the motors
+        motor_driver.stop_motors()
+
         # Wait for each thread that we started to terminate
         tslc.join()
         tmpu.join()
@@ -80,5 +91,11 @@ while True:
         print("GyroX: " + str(flight_control.GyroX))
         print("GyroY: " + str(flight_control.GyroY))
         print("GyroZ: " + str(flight_control.GyroZ))
+    elif cmd == "idle":
+        motor_driver.set_motor_power(Motor.FrontLeft, 5)
+        motor_driver.set_motor_power(Motor.FrontRight, 5)
+        motor_driver.set_motor_power(Motor.RearLeft, 5)
+        motor_driver.set_motor_power(Motor.RearRight, 5)
+        print("Idling at 5% power across all four motors")
     else:
         print("Command '" + cmd + "' not understood.")
