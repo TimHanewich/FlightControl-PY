@@ -23,6 +23,12 @@ def start_motors():
     GPIO.setup(settings.pin_mRL, GPIO.OUT)
     GPIO.setup(settings.pin_mRR, GPIO.OUT)
 
+    #establish that these are GLOBAL - meaning that INSIDE this function, we are actually refering to the global variables outside of it
+    global dFL
+    global dFR
+    global dRL
+    global dRR
+
     #set up the pwm driver classes
     dFL = GPIO.PWM(settings.pin_mFL, 1000)
     dFR = GPIO.PWM(settings.pin_mFR, 1000)
