@@ -105,6 +105,19 @@ while True:
                 exit()
 ```
 
+## Double-Transistor Amplification Circuit Design
+- Both the input from the Raspberry Pi into the first transistor and the input into the second transistor (the one that directly drives the motor) are to use a 15 ohm resistor on the base.
+    - I've tested that this will only allow a draw of ~ 0.6 mA from one of the GPIO pins at full speed. Well below the 16 mA limit.
+
 
 ## Tutorials
 - Using the radio transmitter + receiver w/ RPI: https://www.instructables.com/RF-433-MHZ-Raspberry-Pi/
+    - Example scripts on how to use the rpi-rf module: https://github.com/milaq/rpi-rf
+    - All about the modules, antennas, etc: https://www.youtube.com/watch?v=b5C9SPVlU4U&ab_channel=DroneBotWorkshop
+
+
+
+## Learnings about transistors
+- Beta is the same thing as hFe (DC current gain)
+    - This is the ratio of the collector current to the base current.
+    - i.e. if we want the collector current to be 1 amp and the beta of the transistor is 5, base current would have to be 200mA.
