@@ -4,6 +4,7 @@ import motor_driver
 MEAN_POWER = 0.0 # the mean power that the motors should center around.
 
 def set_mean_power(value:float):
+    global MEAN_POWER
     MEAN_POWER = float
 
 # hold X + Z position (all motor power the same)
