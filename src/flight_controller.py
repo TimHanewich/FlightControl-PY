@@ -36,9 +36,9 @@ def forward(percent:float):
 def set_direction(backward_forward:float, left_right:float):
 
     # check the input
-    if backward_forward > 100.0 or backward_forward < 100.0:
+    if backward_forward > 100.0 or backward_forward < -100.0:
         raise ValueError("backward_forward input was greater than 100.0 or less than 100.0")
-    if left_right > 100.0 or left_right < 100.0:
+    if left_right > 100.0 or left_right < -100.0:
         raise ValueError("left_right input was greater than 100.0 or less than 100.0")
 
     # set globals
