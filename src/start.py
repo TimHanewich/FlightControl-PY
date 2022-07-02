@@ -134,6 +134,7 @@ while True:
             except:
                 print("Unable to convert '" + parts[2] + "' into a floating point number")
     elif cmd == "test-fc":
+        input("Ready to test flight controller! Press enter to start.")
         flight_controller.set_mean_power(15)
         flight_controller.hold()
         input("Now holding even. Press enter to go forward")
