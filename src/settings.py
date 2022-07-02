@@ -25,4 +25,4 @@ mpu6050_address = 0x68 #hexadecimal address of the MPU-6050 module (see readme f
 mpu6050_refresh = 1 # how many seconds to wait in between each refresh of the MPU-6050 data (acceleromoter/gyro)
 
 # Flight controller settings
-slip_diff = 25 # the difference in percent that a single motor on the quadcopter can deviate from the set power level. For example, if the power is set to 50% and the slip diff is set to 25, a single motor can go up to 75% and down to 25% to accomodate needs.
+slip_diff = 10 # the difference in percent that a single motor on the quadcopter can deviate from the set power level. For example, if the power is set to 50% and the slip diff is set to 25, a single motor can go up to 75% and down to 25% to accomodate needs.
