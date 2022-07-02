@@ -63,13 +63,13 @@ def set_direction(backward_forward:float, left_right:float):
     #ensure none are above 100.0
     power_FL = min(power_FL, 100.0)
     power_FR = min(power_FR, 100.0)
-    power_FR = min(power_FR, 100.0)
+    power_RL = min(power_RL, 100.0)
     power_RR = min(power_RR, 100.0)
 
     #set the power
     motor_driver.set_motor_power(motor_driver.Motor.FrontLeft, power_FL)
     motor_driver.set_motor_power(motor_driver.Motor.FrontRight, power_FR)
-    motor_driver.set_motor_power(motor_driver.Motor.FrontLeft, power_FL)
-    motor_driver.set_motor_power(motor_driver.Motor.FrontRight, power_RR)
+    motor_driver.set_motor_power(motor_driver.Motor.RearLeft, power_RL)
+    motor_driver.set_motor_power(motor_driver.Motor.RearRight, power_RR)
 
 
