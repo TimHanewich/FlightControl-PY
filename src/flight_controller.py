@@ -23,12 +23,12 @@ def forward(percent:float):
     global MEAN_POWER
     
     #set Rears
-    motor_driver.set_motor_power(motor_driver.Motor.RearLeft, MEAN_POWER - adj)
-    motor_driver.set_motor_power(motor_driver.Motor.RearRight, MEAN_POWER - adj)
+    motor_driver.set_motor_power(motor_driver.Motor.RearLeft, MEAN_POWER + adj)
+    motor_driver.set_motor_power(motor_driver.Motor.RearRight, MEAN_POWER + adj)
 
     # set fronts
-    motor_driver.set_motor_power(motor_driver.Motor.FrontLeft, MEAN_POWER + adj)
-    motor_driver.set_motor_power(motor_driver.Motor.FrontRight, MEAN_POWER + adj)
+    motor_driver.set_motor_power(motor_driver.Motor.FrontLeft, MEAN_POWER - adj)
+    motor_driver.set_motor_power(motor_driver.Motor.FrontRight, MEAN_POWER - adj)
 
 
 
