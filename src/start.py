@@ -7,6 +7,7 @@ import threading
 import telemetry
 import motor_driver
 from motor_driver import Motor
+import flight_controller
 
 # Set up
 GPIO.setwarnings(False)
@@ -132,7 +133,17 @@ while True:
                     print("Motor '" + parts[1] + "' invalid. Please use 'fl', 'fr', 'rl', or 'rr'")
             except:
                 print("Unable to convert '" + parts[2] + "' into a floating point number")
-            
+    elif cmd == "test-fc":
+        flight_controller.set_mean_power(15)
+        flight_controller.hold()
+        input("Now holding even. Press enter to go forward")
+        flight_controller.forward(100)
+        input("Now going forward. Press enter to hold again")
+        flight_controller.hold()
+        input("Holding. Press entert to kill.")
+        flight_controller.set_mean_power(0)
+        flight_controller.hold()
+        print("Stopped I think.")
 
 
     else:
