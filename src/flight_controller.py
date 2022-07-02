@@ -10,6 +10,7 @@ def set_mean_power(value:float):
 # hold X + Z position (all motor power the same)
 def hold():
     global MEAN_POWER
+    print(MEAN_POWER)
     motor_driver.set_motor_power(motor_driver.Motor.FrontLeft, MEAN_POWER)
     motor_driver.set_motor_power(motor_driver.Motor.FrontRight, MEAN_POWER)
     motor_driver.set_motor_power(motor_driver.Motor.RearLeft, MEAN_POWER)
