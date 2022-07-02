@@ -48,7 +48,6 @@ def set_direction(backward_forward:float, left_right:float):
     backward_forward_adj = settings.slip_diff * ((backward_forward/100)/2)
     left_right_adj = settings.slip_diff * ((left_right/100)/2)
 
-
     #calculate motor speed
     power_FL = MEAN_POWER - backward_forward_adj + left_right_adj
     power_FR = MEAN_POWER - backward_forward_adj - left_right_adj
@@ -65,5 +64,12 @@ def set_direction(backward_forward:float, left_right:float):
     power_FL = min(power_FL, 100.0)
     power_FR = min(power_FR, 100.0)
     power_FR = min(power_FR, 100.0)
-    powerRR = min(power_RR, 100.0)
+    power_RR = min(power_RR, 100.0)
+
+    #set the power
+    motor_driver.set_motor_power(motor_driver.Motor.FrontLeft, power_FL)
+    motor_driver.set_motor_power(motor_driver.Motor.FrontRight, power_FR)
+    motor_driver.set_motor_power(motor_driver.Motor.FrontLeft, power_FL)
+    motor_driver.set_motor_power(motor_driver.Motor.FrontRight, power_RR)
+
 

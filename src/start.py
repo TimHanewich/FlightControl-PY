@@ -6,7 +6,7 @@ import RPi.GPIO as GPIO
 import threading
 import telemetry
 import motor_driver
-from motor_driver import Motor
+from motor_driver import Motor, set_motor_power
 import flight_controller
 
 # Set up
@@ -134,17 +134,31 @@ while True:
             except:
                 print("Unable to convert '" + parts[2] + "' into a floating point number")
     elif cmd == "test-fc":
-        input("Ready to test flight controller! Press enter to start.")
-        flight_controller.set_mean_power(15)
-        flight_controller.hold()
-        input("Now holding even. Press enter to go forward")
-        flight_controller.forward(100)
-        input("Now going forward. Press enter to hold again")
-        flight_controller.hold()
-        input("Holding. Press entert to kill.")
-        flight_controller.set_mean_power(0)
-        flight_controller.hold()
-        print("Stopped I think.")
+        
+        mp = input("First, set a MEAN_POWER: ")
+        flight_controller.set_mean_power(float(mp))
+
+        print("Enter values like this: backward_forward,left_right")
+        print("For example: -40.3,50.1")
+
+        while True:
+            ip = input("Input:")
+            if ip != "":
+                vals = ip.split(",")
+                if len(vals) != 2:
+                    print("You did not provide two values.")
+                    break
+                ip1 = float(vals[0])
+                ip2 = float(vals[1])
+
+                # Go!
+                flight_controller.set_direction(ip1, ip2)
+            else:
+                set_motor_power(Motor.FrontLeft, 0)
+                set_motor_power(Motor.FrontRight, 0)
+                set_motor_power(Motor.RearLeft, 0)
+                set_motor_power(Motor.RearRight, 0)
+                break
 
 
     else:
