@@ -12,8 +12,8 @@ pin_mRL = 37 #rear left motor (counter clock wise)
 pin_mRR = 38 #rear right motor (clockwise)
 pin_statuslight = 11
 pin_motionlight = 40 #Light will be on if it is detected the device is not moving or rotating (relatively still). Off if movement is detected (via the MPU-6050 module)
-gpio_receiver = 13 #433mHz radio reciever. GPIO number, not pin number.
-gpio_transmitter = 11 #433mHz radio transmitter. GPIO number, not pin number.
+gpio_receiver = 27 #433mHz radio reciever. GPIO number, not pin number.
+gpio_transmitter = 17 #433mHz radio transmitter. GPIO number, not pin number.
 
 #Music
 song1 = r"C:\Users\tahan\Downloads\FlightControl-PY\j.json"
