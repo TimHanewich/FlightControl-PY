@@ -34,3 +34,14 @@ rf_terminator = 617833 #the value that represents the last command is now "over"
 rf_motor_off = 617835 # all motors off (0%)
 rf_motor_idle = 617834 #all motors to idle (1% power)
 
+# Radio Communications - focusing
+rf_focus_all = 617835 #set focus to all motors (all 4)
+rf_focus_fl = 617836 #set focus to front left motor
+rf_focus_fr = 617837 #set focus to front right motor
+rf_focus_rl = 617838 #set focus to rear left motor
+rf_focus_rr = 617839 #set focus to rear right motor
+
+# Radio Communications - power commands
+rf_power0 = 617840 #power to 0%
+rf_power1 = 617841 #power to 1%
+
