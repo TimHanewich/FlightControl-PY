@@ -3,6 +3,7 @@ enable_quadcopter = True
 enable_mpu6050 = False
 enable_statuslight = False
 enable_motionlight = False
+enable_radio = True
 ###################
 
 # Pins

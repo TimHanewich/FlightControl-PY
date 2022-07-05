@@ -45,14 +45,5 @@ def start_receiving():
                 last_code = None # set last code to nothing
             else: #if we received something but it is not the terminator, store it for the future
                 last_code = rec.rx_code
-
-
-
         time.sleep(0.05)
     rec.cleanup()
-
-flight_control.KILL = False
-print("Listening...")
-start_receiving()
-print("Done!")
-

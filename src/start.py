@@ -8,6 +8,7 @@ import telemetry
 import motor_driver
 from motor_driver import Motor, set_motor_power
 import flight_controller
+import radio_comm
 
 # Set up
 GPIO.setwarnings(False)
@@ -65,6 +66,12 @@ if settings.enable_motionlight:
     tmlc = threading.Thread(target=tr.StartMotionLight)
     tmlc.start()
 
+# Launch the radio receiver
+if settings.enable_radio:
+    print("Launching radio receiver...")
+    radt = threading.Thread(target=radio_comm.start_receiving)
+    radt.start()
+
 
 # COMMAND INTERFACE
 print("Proceeding to main interface...")
@@ -84,6 +91,8 @@ while True:
             tmpu.join()
         if settings.enable_motionlight:
             tmlc.join()
+        if settings.enable_radio:
+            radt.join()
 
         break
     elif cmd == "status offline":
