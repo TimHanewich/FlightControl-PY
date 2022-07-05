@@ -14,7 +14,6 @@ def send_code(code:int):
     rf.tx_code(settings.rf_terminator, 1, 350, 24)
 
     rf.cleanup()
-    print("Done!")
 
 send_code(117)
 
