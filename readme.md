@@ -113,6 +113,7 @@ while True:
 - Repo with demo code for using RPI-RF: https://github.com/milaq/rpi-rf
 - Using the radio transmitter + receiver w/ RPI: https://www.instructables.com/RF-433-MHZ-Raspberry-Pi/
 - All about the modules, antennas, etc: https://www.youtube.com/watch?v=b5C9SPVlU4U&ab_channel=DroneBotWorkshop
+- **Important to note** - the rpi-rf module accepts the GPIO # for the transmitter/receiver pin, NOT the board number. For example, pin # 11 would need to be given to it as GPIO # 17.
 
 
 
