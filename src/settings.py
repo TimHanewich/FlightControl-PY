@@ -12,6 +12,8 @@ pin_mRL = 37 #rear left motor (counter clock wise)
 pin_mRR = 38 #rear right motor (clockwise)
 pin_statuslight = 11
 pin_motionlight = 40 #Light will be on if it is detected the device is not moving or rotating (relatively still). Off if movement is detected (via the MPU-6050 module)
+pin_receiver = 13 #433mHz radio reciever
+pin_transmitter = 11 #433mHz radio transmitter
 
 #Music
 song1 = r"C:\Users\tahan\Downloads\FlightControl-PY\j.json"
@@ -28,7 +30,7 @@ mpu6050_refresh = 1 # how many seconds to wait in between each refresh of the MP
 slip_diff = 10 # the difference in percent that a single motor on the quadcopter can deviate from the set power level. For example, if the power is set to 50% and the slip diff is set to 25, a single motor can go up to 75% and down to 25% to accomodate needs.
 
 # Radio Communication settings
-rf_over = 617833 #the value that represents the last command is now "over" - sent at the end of each message to confirm the last message is finished.
+rf_terminator = 617833 #the value that represents the last command is now "over" - sent at the end of each message to confirm the last message is finished.
 rf_motor_off = 617835 # all motors off (0%)
 rf_motor_idle = 617834 #all motors to idle (1% power)
 
