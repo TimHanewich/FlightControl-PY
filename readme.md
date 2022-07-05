@@ -109,11 +109,10 @@ while True:
 - Both the input from the Raspberry Pi into the first transistor and the input into the second transistor (the one that directly drives the motor) are to use a 15 ohm resistor on the base.
     - I've tested that this will only allow a draw of ~ 0.6 mA from one of the GPIO pins at full speed. Well below the 16 mA limit.
 
-
-## Tutorials
+## Radio Communications
+- Repo with demo code for using RPI-RF: https://github.com/milaq/rpi-rf
 - Using the radio transmitter + receiver w/ RPI: https://www.instructables.com/RF-433-MHZ-Raspberry-Pi/
-    - Example scripts on how to use the rpi-rf module: https://github.com/milaq/rpi-rf
-    - All about the modules, antennas, etc: https://www.youtube.com/watch?v=b5C9SPVlU4U&ab_channel=DroneBotWorkshop
+- All about the modules, antennas, etc: https://www.youtube.com/watch?v=b5C9SPVlU4U&ab_channel=DroneBotWorkshop
 
 
 
