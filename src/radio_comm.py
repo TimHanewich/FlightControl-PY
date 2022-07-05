@@ -1,7 +1,10 @@
 import settings
 from rpi_rf import RFDevice
+import flight_control
+import time
 
 
+# sends a code and then follows it with the terminator
 def send_code(code:int):
     rf = RFDevice(settings.gpio_transmitter)
     rf.enable_tx()
@@ -15,5 +18,20 @@ def send_code(code:int):
 
     rf.cleanup()
 
-send_code(117)
+# start receiving
+def start_receiving():
+    rec = RFDevice(settings.gpio_receiver)
+    rec.enable_rx()
+    ts = None
+    while flight_control.KILL == False:
+        if rec.rx_code_timestamp != ts:
+            ts = rec.rx_code_timestamp
+            print("Code received: " + str(rec.rx_code))
+        time.sleep(0.05)
+    rec.cleanup()
+
+flight_control.KILL = False
+print("Listening...")
+start_receiving()
+print("Done!")
 
