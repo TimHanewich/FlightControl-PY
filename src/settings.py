@@ -31,18 +31,18 @@ mpu6050_refresh = 1 # how many seconds to wait in between each refresh of the MP
 slip_diff = 10 # the difference in percent that a single motor on the quadcopter can deviate from the set power level. For example, if the power is set to 50% and the slip diff is set to 25, a single motor can go up to 75% and down to 25% to accomodate needs.
 
 # Radio Communication settings
-rf_terminator = 617833 #the value that represents the last command is now "over" - sent at the end of each message to confirm the last message is finished.
-rf_motor_off = 617835 # all motors off (0%)
-rf_motor_idle = 617834 #all motors to idle (1% power)
+rc_terminator = 617833 #the value that represents the last command is now "over" - sent at the end of each message to confirm the last message is finished.
+rc_motor_off = 617835 # all motors off (0%)
+rc_motor_idle = 617834 #all motors to idle (1% power)
 
 # Radio Communications - focusing
-rf_focus_all = 617835 #set focus to all motors (all 4)
-rf_focus_fl = 617836 #set focus to front left motor
-rf_focus_fr = 617837 #set focus to front right motor
-rf_focus_rl = 617838 #set focus to rear left motor
-rf_focus_rr = 617839 #set focus to rear right motor
+rc_focus_all = 617835 #set focus to all motors (all 4)
+rc_focus_fl = 617836 #set focus to front left motor
+rc_focus_fr = 617837 #set focus to front right motor
+rc_focus_rl = 617838 #set focus to rear left motor
+rc_focus_rr = 617839 #set focus to rear right motor
 
 # Radio Communications - power commands
-rf_power0 = 617840 #power to 0%
-rf_power1 = 617841 #power to 1%
+rc_power0 = 617840 #power to 0%
+rc_power1 = 617841 #power to 1%
 

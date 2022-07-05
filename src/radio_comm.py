@@ -14,7 +14,7 @@ def send_code(code:int):
     rf.tx_code(code, 1, 350, 24)
 
     # send the terminator
-    rf.tx_code(settings.rf_terminator, 1, 350, 24)
+    rf.tx_code(settings.rc_terminator, 1, 350, 24)
 
     rf.cleanup()
 
@@ -34,11 +34,11 @@ def start_receiving():
         if rec.rx_code_timestamp != ts:
             ts = rec.rx_code_timestamp
 
-            if rec.rx_code == settings.rf_terminator:
+            if rec.rx_code == settings.rc_terminator:
                 if last_code != None:
-                    if last_code == settings.rf_focus_all:
+                    if last_code == settings.rc_focus_all:
                         print("Focus set to all")
-                    elif last_code == settings.rf_focus_fl:
+                    elif last_code == settings.rc_focus_fl:
                         print("Focus set to front left")
                     else:
                         print("Code '" + str(last_code) + "' not understood.")
