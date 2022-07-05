@@ -16,3 +16,5 @@ def send_code(code:int):
     rf.cleanup()
     print("Done!")
 
+send_code(117)
+
