@@ -12,7 +12,7 @@ import radio_comm
 
 # Set up
 GPIO.setwarnings(False)
-GPIO.setmode(GPIO.BOARD)
+GPIO.setmode(GPIO.BCM)
 
 #start the status light indicator
 def status_light_controller():
