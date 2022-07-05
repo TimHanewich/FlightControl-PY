@@ -8,5 +8,6 @@ def send_terminator():
     rf.tx_repeat = 10
     rf.tx_code(settings.rf_terminator, 1, 350, 24)
     rf.cleanup()
+    print("Done!")
 
 send_terminator()
