@@ -20,13 +20,34 @@ def send_code(code:int):
 
 # start receiving
 def start_receiving():
+
+    # setting up variables that will be used for radio receiving
     rec = RFDevice(settings.gpio_receiver)
     rec.enable_rx()
     ts = None
+
+    # buffer to wait for the termination after each
+    last_code = None
+
+
     while flight_control.KILL == False:
         if rec.rx_code_timestamp != ts:
             ts = rec.rx_code_timestamp
             print("Code received: " + str(rec.rx_code))
+
+            if rec.rx_code == settings.rf_terminator:
+                if last_code != None:
+                    if last_code == settings.rf_focus_all:
+                        print("Focus set to all")
+                    elif last_code == settings.rf_focus_fl:
+                        print("Focus set to front left")
+                    else:
+                        print("Code '" + str(last_code) + "' not understood.")
+            else: #if we received something but it is not the terminator, store it for the future
+                last_code = rec.rx_code
+
+
+
         time.sleep(0.05)
     rec.cleanup()
 
