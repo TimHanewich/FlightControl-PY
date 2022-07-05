@@ -47,15 +47,15 @@ class MotionSensor:
 
 
     def StartMotionLight(self):
-        GPIO.setup(settings.pin_motionlight, GPIO.OUT) #set up the GPIO
+        GPIO.setup(settings.gpio_motionlight, GPIO.OUT) #set up the GPIO
         while flight_control.KILL == False:
             if IsMoving(flight_control.AccX, flight_control.AccY, flight_control.AccZ, flight_control.GyroX, flight_control.GyroY, flight_control.GyroZ): 
                 # if it is moving, light off
-                GPIO.output(settings.pin_motionlight, GPIO.LOW)
+                GPIO.output(settings.gpio_motionlight, GPIO.LOW)
             else: # If it is NOT moving, show the light on
-                GPIO.output(settings.pin_motionlight, GPIO.HIGH)
+                GPIO.output(settings.gpio_motionlight, GPIO.HIGH)
             time.sleep(0.5) # wait a little bit
-        GPIO.output(settings.pin_motionlight, GPIO.LOW) # turn off the light if it is on now
-        GPIO.cleanup(settings.pin_motionlight)
+        GPIO.output(settings.gpio_motionlight, GPIO.LOW) # turn off the light if it is on now
+        GPIO.cleanup(settings.gpio_motionlight)
 
 

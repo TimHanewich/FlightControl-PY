@@ -7,12 +7,12 @@ enable_radio = True
 ###################
 
 # Pins
-pin_mFL = 35 #front left motor (clockwise)
-pin_mFR = 36 #front right motor (counter clock wise)
-pin_mRL = 37 #rear left motor (counter clock wise)
-pin_mRR = 38 #rear right motor (clockwise)
-pin_statuslight = 11
-pin_motionlight = 40 #Light will be on if it is detected the device is not moving or rotating (relatively still). Off if movement is detected (via the MPU-6050 module)
+gpio_mFL = 19 #front left motor (clockwise)
+gpio_mFR = 16 #front right motor (counter clock wise)
+gpio_mRL = 26 #rear left motor (counter clock wise)
+gpio_mRR = 20 #rear right motor (clockwise)
+gpio_statuslight = 17
+gpio_motionlight = 21 #Light will be on if it is detected the device is not moving or rotating (relatively still). Off if movement is detected (via the MPU-6050 module)
 gpio_receiver = 27 #433mHz radio reciever. GPIO number, not pin number.
 gpio_transmitter = 17 #433mHz radio transmitter. GPIO number, not pin number.
 

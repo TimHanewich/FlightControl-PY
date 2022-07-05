@@ -16,26 +16,26 @@ GPIO.setmode(GPIO.BOARD)
 
 #start the status light indicator
 def status_light_controller():
-    GPIO.setup(settings.pin_statuslight, GPIO.OUT)
+    GPIO.setup(settings.gpio_statuslight, GPIO.OUT)
     while flight_control.KILL == False:
         if flight_control.STATUS == resources.sys_status.offline:
-            GPIO.output(settings.pin_statuslight, GPIO.HIGH)
+            GPIO.output(settings.gpio_statuslight, GPIO.HIGH)
             time.sleep(1)
-            GPIO.output(settings.pin_statuslight, GPIO.LOW)
+            GPIO.output(settings.gpio_statuslight, GPIO.LOW)
             time.sleep(1)
         elif flight_control.STATUS == resources.sys_status.standby:
-            GPIO.output(settings.pin_statuslight, GPIO.HIGH)
+            GPIO.output(settings.gpio_statuslight, GPIO.HIGH)
             time.sleep(0.05)
-            GPIO.output(settings.pin_statuslight, GPIO.LOW)
+            GPIO.output(settings.gpio_statuslight, GPIO.LOW)
             time.sleep(0.05)
-            GPIO.output(settings.pin_statuslight, GPIO.HIGH)
+            GPIO.output(settings.gpio_statuslight, GPIO.HIGH)
             time.sleep(0.05)
-            GPIO.output(settings.pin_statuslight, GPIO.LOW)
+            GPIO.output(settings.gpio_statuslight, GPIO.LOW)
             time.sleep(0.05)
             time.sleep(2)
     
     #cleanup the GPIO that we were using
-    GPIO.cleanup(settings.pin_statuslight)
+    GPIO.cleanup(settings.gpio_statuslight)
 
 
 

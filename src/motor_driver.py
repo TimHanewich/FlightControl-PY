@@ -18,10 +18,10 @@ dRR = None
 def start_motors():
 
     #set up the pins for output
-    GPIO.setup(settings.pin_mFL, GPIO.OUT)
-    GPIO.setup(settings.pin_mFR, GPIO.OUT)
-    GPIO.setup(settings.pin_mRL, GPIO.OUT)
-    GPIO.setup(settings.pin_mRR, GPIO.OUT)
+    GPIO.setup(settings.gpio_mFL, GPIO.OUT)
+    GPIO.setup(settings.gpio_mFR, GPIO.OUT)
+    GPIO.setup(settings.gpio_mRL, GPIO.OUT)
+    GPIO.setup(settings.gpio_mRR, GPIO.OUT)
 
     #establish that these are GLOBAL - meaning that INSIDE this function, we are actually refering to the global variables outside of it
     global dFL
@@ -30,10 +30,10 @@ def start_motors():
     global dRR
 
     #set up the pwm driver classes
-    dFL = GPIO.PWM(settings.pin_mFL, 1000)
-    dFR = GPIO.PWM(settings.pin_mFR, 1000)
-    dRL = GPIO.PWM(settings.pin_mRL, 1000)
-    dRR = GPIO.PWM(settings.pin_mRR, 1000)
+    dFL = GPIO.PWM(settings.gpio_mFL, 1000)
+    dFR = GPIO.PWM(settings.gpio_mFR, 1000)
+    dRL = GPIO.PWM(settings.gpio_mRL, 1000)
+    dRR = GPIO.PWM(settings.gpio_mRR, 1000)
 
     #start the pwm
     dFL.start(0)
@@ -67,8 +67,8 @@ def stop_motors():
     dRR.stop()
 
     #clean pins
-    GPIO.cleanup(settings.pin_mFL)
-    GPIO.cleanup(settings.pin_mFR)
-    GPIO.cleanup(settings.pin_mRL)
-    GPIO.cleanup(settings.pin_mRR)
+    GPIO.cleanup(settings.gpio_mFL)
+    GPIO.cleanup(settings.gpio_mFR)
+    GPIO.cleanup(settings.gpio_mRL)
+    GPIO.cleanup(settings.gpio_mRR)
     
