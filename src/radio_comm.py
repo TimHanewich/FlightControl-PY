@@ -42,6 +42,7 @@ def start_receiving():
                         print("Focus set to front left")
                     else:
                         print("Code '" + str(last_code) + "' not understood.")
+                last_code = None # set last code to nothing
             else: #if we received something but it is not the terminator, store it for the future
                 last_code = rec.rx_code
 
