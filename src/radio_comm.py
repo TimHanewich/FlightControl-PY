@@ -3,6 +3,7 @@ import settings
 from rpi_rf import RFDevice
 import flight_control
 import time
+import event_logging
 
 
 # sends a code and then follows it with the terminator
@@ -60,18 +61,18 @@ def start_receiving():
                         val = int(str(last_code)[len(str(settings.rc_pos_value_prefix)):999])
                         if focus == RadioOperatorFocus.BackwardForward:
                             val_backwardforward = val
-                            print("backwardforward set to " + str(val))
+                            event_logging.log("radio", "backwardforward set to " + str(val))
                         elif focus == RadioOperatorFocus.LeftRight:
                             val_leftright = val
-                            print("leftright set to " + str(val))
+                            event_logging.log("radio", "leftright set to " + str(val))
                     elif str(last_code)[0:len(str(settings.rc_neg_value_prefix))] == str(settings.rc_neg_value_prefix):
                         val = int(str(last_code)[len(str(settings.rc_pos_value_prefix)):999])
                         if focus == RadioOperatorFocus.BackwardForward:
                             val_backwardforward = val * -1
-                            print("backwardforward set to " + str(val*-1))
+                            event_logging.log("radio", "backwardforward set to " + str(val*-1))
                         elif focus == RadioOperatorFocus.LeftRight:
                             val_leftright = val * -1
-                            print("leftright set to " + str(val*-1))
+                            event_logging.log("radio", "leftright set to " + str(val*-1))
 
 
                 last_code = None # set last code to nothing
