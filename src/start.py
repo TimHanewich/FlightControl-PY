@@ -177,6 +177,60 @@ while True:
                 print(str(l.timestamp) + ": " + l.type + " - " + l.description)
             t = t + 1
 
+    elif cmd[0:2] == "tx":
+        parts = cmd.split(" ")
+        if len(parts) == 3:
+            if parts[1] == "mp":
+                val = int(parts[2])
+
+                # focus on mean power
+                print("Setting focus...")
+                radio_comm.send_code(settings.rc_focus_meanpower)
+
+                # set the value
+                print("Setting value...")
+                radio_comm.send_code(int(str(settings.rc_pos_value_prefix) + str(val)))
+
+            elif parts[1] == "dir":
+                dual = parts[2].split(",")
+                if len(dual) == 2:
+                    bf = int(dual[0])
+                    lr = int(dual[1])
+
+                    #set backward forward
+                    print("Setting backward_forward focus...")
+                    radio_comm.send_code(settings.rc_focus_backwardforward)
+
+                    #set backward forward value
+                    print("Setting backward_forward value...")
+                    if (bf >= 0):
+                        radio_comm.send_code(int(str(settings.rc_pos_value_prefix) + str(bf)))
+                    else:
+                        radio_comm.send_code(int(str(settings.rc_neg_value_prefix) + str(abs(bf))))
+
+                    #set left right
+                    print("Setting left_right forcus...")
+                    radio_comm.send_code(settings.rc_focus_leftright)
+
+                    #set left right value
+                    print("Setting left_right value...")
+                    if (lr >= 0):
+                        radio_comm.send_code(int(str(settings.rc_pos_value_prefix) + str(lr)))
+                    else:
+                        radio_comm.send_code(int(str(settings.rc_neg_value_prefix) + str(abs(lr))))
+                    
+                else:
+                    print("You need to provide the direction like this: -80,20")
+                    print("The -80 is the -80% for the backward forward. The 20 is the left-right.")
+        elif len(parts) == 2:
+            if parts[1] == "exec":
+                radio_comm.send_code(settings.rc_fc_exec)
+                print("Execution sent!")
+            else:
+                print("Part '" + parts[1] + "' not understood.")
+        else:
+            print("tx command was not in the correct format.")
+
 
     else:
         print("Command '" + cmd + "' not understood.")
