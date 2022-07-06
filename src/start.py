@@ -9,6 +9,7 @@ import motor_driver
 from motor_driver import Motor, set_motor_power
 import flight_controller
 import radio_comm
+import event_logging
 
 # Set up
 GPIO.setwarnings(False)
@@ -168,6 +169,13 @@ while True:
                 set_motor_power(Motor.RearLeft, 0)
                 set_motor_power(Motor.RearRight, 0)
                 break
+        
+    elif cmd == "logs":
+        t = 0
+        for l in event_logging.logs:
+            if t < 10:
+                print(str(l.timestamp) + ": " + l.type + " - " + l.description)
+            t = t + 1
 
 
     else:
