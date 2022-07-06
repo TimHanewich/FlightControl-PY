@@ -4,6 +4,7 @@ from rpi_rf import RFDevice
 import flight_control
 import time
 import event_logging
+import flight_controller
 
 
 # sends a code and then follows it with the terminator
@@ -51,6 +52,8 @@ def start_receiving():
             if rec.rx_code == settings.rc_terminator:
                 if last_code != None:
 
+                    
+
                     # Changing focus
                     if last_code == settings.rc_focus_backwardforward:
                         focus = RadioOperatorFocus.BackwardForward
@@ -58,6 +61,17 @@ def start_receiving():
                         focus = RadioOperatorFocus.LeftRight
                     elif last_code == settings.rc_focus_meanpower:
                         focus = RadioOperatorFocus.MeanPower
+
+                    
+                    # system-level
+                    elif last_code == settings.rc_fc_exec:
+                        try:
+                            flight_controller.set_mean_power(val_meanpower) #set mean power 
+                            flight_controller.set_direction(val_backwardforward, val_leftright) # set direction
+                            flight_controller.execute() #execute
+                            event_logging.log("radio", "executed flight scheme")
+                        finally:
+                            event_logging.log("radio", "execution of flight scheme FAILED")
 
 
                     # Setting a value
