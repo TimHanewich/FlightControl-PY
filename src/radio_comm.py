@@ -21,6 +21,18 @@ def send_code(code:int):
 
     rf.cleanup()
 
+
+
+
+
+
+
+
+
+
+
+
+
 class RadioOperatorFocus(IntEnum):
     BackwardForward = 0,
     LeftRight = 1,
