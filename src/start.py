@@ -172,7 +172,7 @@ while True:
         
     elif cmd == "logs":
         t = 0
-        for l in event_logging.logs:
+        for l in event_logging.LOGS:
             if t < 10:
                 print(str(l.timestamp) + ": " + l.type + " - " + l.description)
             t = t + 1
