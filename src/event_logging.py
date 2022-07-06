@@ -7,6 +7,8 @@ class event_log:
     timestamp = datetime.datetime.now()
     description = ""
 
+    def __init__(self):
+        self.timestamp = datetime.datetime.now()
 
 LOGS = []
 
