@@ -1,3 +1,4 @@
+from enum import IntEnum
 import settings
 from rpi_rf import RFDevice
 import flight_control
@@ -18,6 +19,11 @@ def send_code(code:int):
 
     rf.cleanup()
 
+class RadioOperatorFocus(IntEnum):
+    BackwardForward = 0,
+    LeftRight = 1
+
+
 # start receiving
 def start_receiving():
 
@@ -29,6 +35,11 @@ def start_receiving():
     # buffer to wait for the termination after each
     last_code = None
 
+    #continuous variables
+    focus = RadioOperatorFocus.BackwardForward
+    val_backwardforward = 0
+    val_leftright = 0
+
 
     while flight_control.KILL == False:
         if rec.rx_code_timestamp != ts:
@@ -36,12 +47,33 @@ def start_receiving():
 
             if rec.rx_code == settings.rc_terminator:
                 if last_code != None:
-                    if last_code == settings.rc_focus_all:
-                        print("Focus set to all")
-                    elif last_code == settings.rc_focus_fl:
-                        print("Focus set to front left")
-                    else:
-                        print("Code '" + str(last_code) + "' not understood.")
+
+                    # Changing focus
+                    if last_code == settings.rc_focus_backwardforward:
+                        focus = RadioOperatorFocus.BackwardForward
+                    elif last_code == settings.rc_focus_leftright:
+                        focus = RadioOperatorFocus.LeftRight
+
+
+                    # Setting a value
+                    elif str(last_code)[0:len(str(settings.rc_pos_value_prefix))] == str(settings.rc_pos_value_prefix):
+                        val = int(str(last_code)[len(str(settings.rc_pos_value_prefix)):999])
+                        if focus == RadioOperatorFocus.BackwardForward:
+                            val_backwardforward = val
+                            print("backwardforward set to " + str(val))
+                        elif focus == RadioOperatorFocus.LeftRight:
+                            val_leftright = val
+                            print("leftright set to " + str(val))
+                    elif str(last_code)[0:len(str(settings.rc_neg_value_prefix))] == str(settings.rc_neg_value_prefix):
+                        val = int(str(last_code)[len(str(settings.rc_pos_value_prefix)):999])
+                        if focus == RadioOperatorFocus.BackwardForward:
+                            val_backwardforward = val * -1
+                            print("backwardforward set to " + str(val*-1))
+                        elif focus == RadioOperatorFocus.LeftRight:
+                            val_leftright = val * -1
+                            print("leftright set to " + str(val*-1))
+
+
                 last_code = None # set last code to nothing
             else: #if we received something but it is not the terminator, store it for the future
                 last_code = rec.rx_code

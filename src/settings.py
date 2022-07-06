@@ -33,16 +33,14 @@ slip_diff = 10 # the difference in percent that a single motor on the quadcopter
 # Radio Communication settings
 rc_terminator = 617833 #the value that represents the last command is now "over" - sent at the end of each message to confirm the last message is finished.
 rc_motor_off = 617835 # all motors off (0%)
-rc_motor_idle = 617834 #all motors to idle (1% power)
+rc_fc_exec = 617844 # execute the values we have saved on the flight controller
 
 # Radio Communications - focusing
-rc_focus_all = 617835 #set focus to all motors (all 4)
-rc_focus_fl = 617836 #set focus to front left motor
-rc_focus_fr = 617837 #set focus to front right motor
-rc_focus_rl = 617838 #set focus to rear left motor
-rc_focus_rr = 617839 #set focus to rear right motor
+rc_focus_backwardforward = 617842 #set focus to backwardforward
+rc_focus_leftright = 617843 #set focus to leftright
 
-# Radio Communications - power commands
-rc_power0 = 617840 #power to 0%
-rc_power1 = 617841 #power to 1%
+
+# Radio Communications - value
+rc_pos_value_prefix = 771 #starts every value command. For example, entering in 89% would be 77789
+rc_neg_value_prefix = 769 #starts every value command that is negative. For example, -77% would be 76977
 
