@@ -3,7 +3,10 @@ import settings
 import motor_driver
 import math
 
+# Flight control variables
 MEAN_POWER = 0.0 # the mean power that the motors should center around.
+BACKWARD_FORWARD = 0.0
+LEFT_RIGHT = 0.0
 
 def set_mean_power(value:float):
     global MEAN_POWER
@@ -21,10 +24,26 @@ def set_direction(backward_forward:float, left_right:float):
 
     # set globals
     global MEAN_POWER
+    global BACKWARD_FORWARD
+    global LEFT_RIGHT
+
+    # set the values
+    BACKWARD_FORWARD = backward_forward
+    LEFT_RIGHT = left_right
+
+
+
+# executes the values that were saved
+def execute():
+
+    # set globals
+    global MEAN_POWER
+    global BACKWARD_FORWARD
+    global LEFT_RIGHT
 
     # calculate standard adjustments
-    backward_forward_adj = settings.slip_diff * ((backward_forward/100)/2)
-    left_right_adj = settings.slip_diff * ((left_right/100)/2)
+    backward_forward_adj = settings.slip_diff * ((BACKWARD_FORWARD/100)/2)
+    left_right_adj = settings.slip_diff * ((LEFT_RIGHT/100)/2)
 
     #calculate motor speed
     power_FL = MEAN_POWER - backward_forward_adj + left_right_adj
@@ -49,5 +68,3 @@ def set_direction(backward_forward:float, left_right:float):
     motor_driver.set_motor_power(motor_driver.Motor.FrontRight, power_FR)
     motor_driver.set_motor_power(motor_driver.Motor.RearLeft, power_RL)
     motor_driver.set_motor_power(motor_driver.Motor.RearRight, power_RR)
-
-
