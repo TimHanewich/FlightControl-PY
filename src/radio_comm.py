@@ -22,7 +22,8 @@ def send_code(code:int):
 
 class RadioOperatorFocus(IntEnum):
     BackwardForward = 0,
-    LeftRight = 1
+    LeftRight = 1,
+    MeanPower = 2
 
 
 # start receiving
@@ -40,6 +41,7 @@ def start_receiving():
     focus = RadioOperatorFocus.BackwardForward
     val_backwardforward = 0
     val_leftright = 0
+    val_meanpower = 0
 
 
     while flight_control.KILL == False:
@@ -54,6 +56,8 @@ def start_receiving():
                         focus = RadioOperatorFocus.BackwardForward
                     elif last_code == settings.rc_focus_leftright:
                         focus = RadioOperatorFocus.LeftRight
+                    elif last_code == settings.rc_focus_meanpower:
+                        focus = RadioOperatorFocus.MeanPower
 
 
                     # Setting a value
@@ -65,6 +69,9 @@ def start_receiving():
                         elif focus == RadioOperatorFocus.LeftRight:
                             val_leftright = val
                             event_logging.log("radio", "leftright set to " + str(val))
+                        elif focus == RadioOperatorFocus.MeanPower:
+                            val_meanpower = val
+                            event_logging.log("radio", "meanpower set to " + str(val))
                     elif str(last_code)[0:len(str(settings.rc_neg_value_prefix))] == str(settings.rc_neg_value_prefix):
                         val = int(str(last_code)[len(str(settings.rc_pos_value_prefix)):999])
                         if focus == RadioOperatorFocus.BackwardForward:
@@ -73,6 +80,9 @@ def start_receiving():
                         elif focus == RadioOperatorFocus.LeftRight:
                             val_leftright = val * -1
                             event_logging.log("radio", "leftright set to " + str(val*-1))
+                        elif focus == RadioOperatorFocus.MeanPower:
+                            val_meanpower = val * -1
+                            event_logging.log("radio", "meanpower set to " + str(val*-1))
 
 
                 last_code = None # set last code to nothing

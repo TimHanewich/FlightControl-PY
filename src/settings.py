@@ -30,14 +30,17 @@ mpu6050_refresh = 1 # how many seconds to wait in between each refresh of the MP
 # Flight controller settings
 slip_diff = 10 # the difference in percent that a single motor on the quadcopter can deviate from the set power level. For example, if the power is set to 50% and the slip diff is set to 25, a single motor can go up to 75% and down to 25% to accomodate needs.
 
-# Radio Communication settings
+# Radio Communication protocol
 rc_terminator = 617833 #the value that represents the last command is now "over" - sent at the end of each message to confirm the last message is finished.
+
+# Radio Communications - system levels
 rc_motor_off = 617835 # all motors off (0%)
 rc_fc_exec = 617844 # execute the values we have saved on the flight controller
 
 # Radio Communications - focusing
 rc_focus_backwardforward = 617842 #set focus to backwardforward
 rc_focus_leftright = 617843 #set focus to leftright
+rc_focus_meanpower = 617845 #set focus to MEAN_POWER
 
 
 # Radio Communications - value
