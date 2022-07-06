@@ -1,4 +1,3 @@
-from turtle import left
 import settings
 import motor_driver
 import math
