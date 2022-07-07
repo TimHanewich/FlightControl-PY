@@ -129,3 +129,4 @@ while True:
 - Run `xboxdrv -L` to get a list of attached controllers (will only recognize Xbox 360 controllers)
 - Clone and run this: https://github.com/FRC4564/Xbox/blob/master/sample.py
     - You will need the sample code and xbox.py code in the same repository
+- It is important to run the python scripts with sudo. i.e. `sudo python3 rc.py` for my radio transmitter module.
