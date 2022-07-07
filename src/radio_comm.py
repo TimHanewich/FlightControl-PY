@@ -120,26 +120,30 @@ def start_receiving():
                             event_logging.log("radio", "meanpower set to " + str(val*-1))
 
 
-                    # distinct flight controller inputs
-                    if last_code >= settings.rc_seed and last_code <= fc_codes.input_to_code(settings.rc_seed, 100, 100, 100): #if the last code is within the range (higher than the seed, lower than the maximum value)
-                        inputs = fc_codes.code_to_input(settings.rc_seed, last_code)
-
-                        #Set the mean power
-                        flight_controller.set_mean_power(inputs[0])
-
-                        #set the direction
-                        flight_controller.set_direction(inputs[1], inputs[2])
-
-                        #execute
-                        flight_controller.execute()
-
-                        #log
-                        event_logging.log("radio", "Executed MP: " + str(inputs[0]) + ", BF: " + str(inputs[1]) + ", LR: " + str(inputs[2]))
-
-
+                    
 
 
                 last_code = None # set last code to nothing
+            
+            
+            # distinct flight controller inputs?
+            elif last_code >= settings.rc_seed and last_code <= fc_codes.input_to_code(settings.rc_seed, 100, 100, 100): #if the last code is within the range (higher than the seed, lower than the maximum value)
+                inputs = fc_codes.code_to_input(settings.rc_seed, last_code)
+
+                #Set the mean power
+                flight_controller.set_mean_power(inputs[0])
+
+                #set the direction
+                flight_controller.set_direction(inputs[1], inputs[2])
+
+                #execute
+                flight_controller.execute()
+
+                #log
+                event_logging.log("radio", "Executed MP: " + str(inputs[0]) + ", BF: " + str(inputs[1]) + ", LR: " + str(inputs[2]))
+
+
+            
             else: #if we received something but it is not the terminator, store it for the future
                 last_code = rec.rx_code
         time.sleep(0.05)
