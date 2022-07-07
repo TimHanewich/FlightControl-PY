@@ -10,11 +10,12 @@ import settings
 
 joy = xbox.Joystick()
 
+# Start a MEAN_POWER value that will be changed and recycled
+MEAN_POWER = 0
+
 while not joy.Back():
 
-    try:
-        # Start a MEAN_POWER value that will be changed and recycled
-        MEAN_POWER = 0
+    try:  
 
         # get backward forward value
         left_y = joy.leftY()
