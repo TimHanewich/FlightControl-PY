@@ -121,3 +121,11 @@ while True:
 - Beta is the same thing as hFe (DC current gain)
     - This is the ratio of the collector current to the base current.
     - i.e. if we want the collector current to be 1 amp and the beta of the transistor is 5, base current would have to be 200mA.
+
+
+## Connecting an Xbox Controller
+- Run `lsusb` in bash to list the connected USB devices.
+- Install xboxdrv: `sudo apt-get install xboxdrv`
+- Run `xboxdrv -L` to get a list of attached controllers (will only recognize Xbox 360 controllers)
+- Clone and run this: https://github.com/FRC4564/Xbox/blob/master/sample.py
+    - You will need the sample code and xbox.py code in the same repository
