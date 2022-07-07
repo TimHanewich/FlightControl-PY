@@ -35,11 +35,13 @@ while not joy.Back():
 
         # increment mean power?
         if joy.A() == 1:
-            MEAN_POWER = MEAN_POWER + 1
+            if MEAN_POWER < 100:
+                MEAN_POWER = MEAN_POWER + 1
         
         # decrement mean power?
         if joy.B() == 1:
-            MEAN_POWER = MEAN_POWER - 1
+            if MEAN_POWER > -100:
+                MEAN_POWER = MEAN_POWER - 1
 
         # calculate the code for this 
         CODE = fc_codes.input_to_code(settings.rc_seed, MEAN_POWER, bf, lr)
