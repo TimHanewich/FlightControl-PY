@@ -47,3 +47,6 @@ rc_focus_meanpower = 617845 #set focus to MEAN_POWER
 rc_pos_value_prefix = 771 #starts every value command. For example, entering in 89% would be 77789
 rc_neg_value_prefix = 769 #starts every value command that is negative. For example, -77% would be 76977
 
+# Radio Communications - SEED VALUE
+rc_seed = 894234 #this will be the BASE of the values that represent a distinct mean_power, backward_forward, and left_right. It will go up 4080501 values from here.
+
