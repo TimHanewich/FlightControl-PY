@@ -32,7 +32,7 @@ while not joy.Back():
             lr = -100
 
         # calculate mean power
-        right_y = joy.rightY()
+        right_y = joy.rightTrigger()
         right_y = round(right_y * 100)
         if right_y < 0:
             right_y = 0
