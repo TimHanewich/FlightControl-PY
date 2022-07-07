@@ -127,8 +127,8 @@ def start_receiving():
             
             
             # distinct flight controller inputs?
-            elif last_code >= settings.rc_seed and last_code <= fc_codes.input_to_code(settings.rc_seed, 100, 100, 100): #if the last code is within the range (higher than the seed, lower than the maximum value)
-                inputs = fc_codes.code_to_input(settings.rc_seed, last_code)
+            elif rec.rx_code >= settings.rc_seed and rec.rx_code <= fc_codes.input_to_code(settings.rc_seed, 100, 100, 100): #if the last code is within the range (higher than the seed, lower than the maximum value)
+                inputs = fc_codes.code_to_input(settings.rc_seed, rec.rx_code)
 
                 #Set the mean power
                 flight_controller.set_mean_power(inputs[0])
