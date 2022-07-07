@@ -1,6 +1,5 @@
 # RADIO CONTROLLER - meant to be used as standalone
 
-from typing import final
 import radio_comm
 import xbox
 import time
@@ -51,7 +50,7 @@ while not joy.Back():
         #wait
         print("Success! Waiting... ")
         time.sleep(0.1)
-    finally:
+    except:
         joy.close()
         print("That failed! Joystick closed.")
 
