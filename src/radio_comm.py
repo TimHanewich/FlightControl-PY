@@ -9,7 +9,7 @@ import fc_codes
 
 
 # sends a code and then follows it with the terminator
-def send_code(code:int):
+def send_code(code:int, terminate:bool = True):
 
     # Settings to use:
     setting_repeat = 10 #default is 10
@@ -26,7 +26,8 @@ def send_code(code:int):
     rf.tx_code(code, setting_protocol, setting_pulselength, setting_length)
 
     # send the terminator
-    rf.tx_code(settings.rc_terminator, setting_protocol, setting_pulselength, setting_length)
+    if terminate:
+        rf.tx_code(settings.rc_terminator, setting_protocol, setting_pulselength, setting_length)
 
     rf.cleanup()
 
