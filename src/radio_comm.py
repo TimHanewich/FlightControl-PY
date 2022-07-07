@@ -9,15 +9,23 @@ import flight_controller
 
 # sends a code and then follows it with the terminator
 def send_code(code:int):
+
+    # Settings to use:
+    setting_repeat = 10 #default is 10
+    setting_pulselength = 350 #default is 350
+    setting_length = 24 #default is 24
+    setting_protocol = 1 #default is 1
+
+
     rf = RFDevice(settings.gpio_transmitter)
     rf.enable_tx()
-    rf.tx_repeat = 10
+    rf.tx_repeat = setting_repeat
 
     # send the code
-    rf.tx_code(code, 1, 350, 24)
+    rf.tx_code(code, setting_protocol, setting_pulselength, setting_length)
 
     # send the terminator
-    rf.tx_code(settings.rc_terminator, 1, 350, 24)
+    rf.tx_code(settings.rc_terminator, setting_protocol, setting_pulselength, setting_length)
 
     rf.cleanup()
 
