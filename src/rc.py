@@ -10,8 +10,6 @@ import settings
 
 joy = xbox.Joystick()
 
-# Start a MEAN_POWER value that will be changed and recycled
-MEAN_POWER = 0
 
 while not joy.Back():
 
@@ -33,21 +31,20 @@ while not joy.Back():
         elif lr < -100:
             lr = -100
 
-        # increment mean power?
-        if joy.A() == 1:
-            if MEAN_POWER < 100:
-                MEAN_POWER = MEAN_POWER + 1
-        
-        # decrement mean power?
-        if joy.B() == 1:
-            if MEAN_POWER > -100:
-                MEAN_POWER = MEAN_POWER - 1
+        # calculate mean power
+        right_y = joy.rightY()
+        right_y = round(right_y * 100)
+        if right_y < 0:
+            right_y = 0
+        elif right_y > 100:
+            right_y = 100
+        mp = right_y
 
         # calculate the code for this 
-        CODE = fc_codes.input_to_code(settings.rc_seed, MEAN_POWER, bf, lr)
+        CODE = fc_codes.input_to_code(settings.rc_seed, mp, bf, lr)
 
         # transmit
-        print("Transmitting: MP(" + str(MEAN_POWER) + ") BF(" + str(bf) + ") LR(" + str(lr) + ") = " + str(CODE))
+        print("Transmitting: MP(" + str(mp) + ") BF(" + str(bf) + ") LR(" + str(lr) + ") = " + str(CODE))
         radio_comm.send_code(CODE, False)
 
         #wait
