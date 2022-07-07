@@ -19,6 +19,7 @@ def input_to_code(seed:int, mean_power:int, backward_forward:int, left_right: in
     CODE = seed + part1 + part2 + part3
     return CODE
 
+# returns in this order: mean_power, backward_forward, left_right 
 def code_to_input(seed:int, code:int):
 
     permutations_mean_power = 101
