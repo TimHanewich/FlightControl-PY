@@ -68,6 +68,8 @@ for i in instructions:
 ## How to get the MPU-6050 Module (Gyroscope, Accelerator, Temperature Sensor) to work
 - https://www.youtube.com/watch?v=JTFa5l7zAA4
 - Backup of the above video: https://youtu.be/jREIJ80rwz0
+- MPU6050 Hexadecimal Address: `0x68`
+- MPU6050 decimal address: `104`
 
 1. Enable I2C (IIC) on raspberry PI:
     1. sudo raspi-config
