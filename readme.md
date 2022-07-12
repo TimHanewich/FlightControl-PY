@@ -145,3 +145,27 @@ while True:
     - DC-DC Converter (for Pi)
 - Negatives needed
     - 
+
+## NEO-6M GPS Module Usage (https://www.amazon.com/dp/B07P8YMVNT?smid=A1N6DLY3NQK2VM)
+Guide on how to use this with the Raspberry Pi (in normal Python, not MicroPython): https://sparklers-the-makers.github.io/blog/robotics/use-neo-6m-module-with-raspberry-pi/
+- You will need the [pyserial package](https://pypi.org/project/pyserial/). That is not mentioned in the guide above.
+- You will be installing the [pynmea2 package](https://pypi.org/project/pynmea2/). GitHub repo [here](https://github.com/Knio/pynmea2).
+
+Example code (works on a micro-computer, so not the Raspberry Pi Pico):
+```
+import serial
+import time
+import string
+import pynmea2
+
+while True:
+        port="/dev/ttyAMA0"
+        ser=serial.Serial(port, baudrate=9600, timeout=0.5)
+        dataout = pynmea2.NMEAStreamReader()
+        newdata=ser.readline()
+
+        newdatastr = newdata.decode("utf-8")
+        if "GPGGA" in newdatastr:
+                msg = pynmea2.parse(newdatastr)
+                print(str(msg.latitude) + ", " + str(msg.longitude) + " - " + str(msg.altitude))
+```
