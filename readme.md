@@ -136,4 +136,12 @@ while True:
 ## Notes on Raspberry Pi Zero W Current Draw (all at 5V)
 - Turned off, yet plugged in: 0.031A
 
-
+## Drone Wiring Schematics
+- Positives needed
+    - Front left motor
+    - Front right motor
+    - Rear left motor
+    - Rear right motor
+    - DC-DC Converter (for Pi)
+- Negatives needed
+    - 
